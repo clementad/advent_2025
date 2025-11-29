@@ -1,0 +1,31 @@
+export const messages = [
+  { day: 1, type: "Folklore", text: "In Iceland, the 'Yule Lads' (Jólasveinar) are 13 trolls who visit children on the 13 nights leading up to Christmas. Each has a specific mischief, like 'Spoon-Licker' or 'Door-Slammer'.", source: "Source: National Museum of Iceland" },
+  { day: 2, type: "Tradition", text: "In Ukraine, it's traditional to hang spider web ornaments on the tree. The 'Legend of the Christmas Spider' says a spider spun webs on a poor widow's tree, which turned into gold.", source: "Source: Ukraine.com" },
+  { day: 3, type: "History", text: "Christmas was illegal in Boston from 1659 to 1681. The Puritans believed it was a corrupt holiday with no biblical basis and fined anyone caught celebrating.", source: "Source: Mass.gov" },
+  { day: 4, type: "Folklore", text: "In Italy, a witch named 'La Befana' delivers gifts to children on Epiphany Eve (January 5th). She flies on a broomstick and enters through the chimney, just like Santa.", source: "Source: Italian Tourism" },
+  { day: 5, type: "Tradition", text: "In Caracas, Venezuela, it is customary to travel to early morning church services on roller skates. The streets are even closed to cars to ensure safety.", source: "Source: Metro.co.uk" },
+  { day: 6, type: "Mini Game", gameType: "catch-elf", text: "The Yule Lads are loose! Catch the mischievous elf before he steals the sausages!", source: "Interactive Game" },
+  { day: 7, type: "Folklore", text: "The 'Krampus' is a horned, anthropomorphic figure in Alpine folklore who punishes children who have misbehaved, acting as the dark counterpart to Saint Nicholas.", source: "Source: National Geographic" },
+  { day: 8, type: "Tradition", text: "In Catalonia, Spain, the 'Caganer' is a figurine of a defecating man placed in the nativity scene. It symbolizes fertilization of the earth and brings good luck for the harvest.", source: "Source: Barcelona.de" },
+  { day: 9, type: "History", text: "The song 'Silent Night' was first performed in 1818 in Austria because the church organ was broken. It was written for guitar and two voices as a last-minute solution.", source: "Source: Silent Night Society" },
+  { day: 10, type: "Tradition", text: "In Japan, eating KFC is a huge Christmas tradition. It started with a 'Kentucky for Christmas' marketing campaign in 1974 and now requires ordering weeks in advance.", source: "Source: BBC Worklife" },
+  { day: 11, type: "Folklore", text: "In Norway, people hide their brooms on Christmas Eve. It's believed that witches and evil spirits come out and look for brooms to ride on.", source: "Source: Visit Norway" },
+  { day: 12, type: "Mini Game", gameType: "decorate-tree", text: "Decorate the Christmas Tree! Click anywhere on the tree to add an ornament.", source: "Interactive Game" },
+  { day: 13, type: "History", text: "The first artificial Christmas trees were made in Germany in the 19th century using dyed goose feathers.", source: "Source: History.com" },
+  { day: 14, type: "Folklore", text: "The 'Mari Lwyd' is a Welsh tradition involving a horse's skull mounted on a pole, carried by a person hidden under a sack. They go door-to-door singing challenges to gain entry.", source: "Source: Museum Wales" },
+  { day: 15, type: "Tradition", text: "In Oaxaca, Mexico, December 23rd is the 'Night of the Radishes' (Noche de Rábanos), where elaborate scenes are carved out of giant radishes.", source: "Source: Oaxaca Travel" },
+  { day: 16, type: "History", text: "Rudolph the Red-Nosed Reindeer was created in 1939 by a copywriter for the Montgomery Ward department store as a marketing gimmick for a coloring book.", source: "Source: Smithsonian Magazine" },
+  { day: 17, type: "Folklore", text: "The 'Jólakötturinn' (Yule Cat) is a giant, vicious cat in Icelandic folklore who lurks in the snowy countryside and eats people who haven't received new clothes for Christmas.", source: "Source: Smithsonian Magazine" },
+  {
+    day: 18, type: "Mini Game", gameType: "trivia", text: "Test your knowledge of Christmas oddities!", source: "Interactive Quiz",
+    question: "In which country do people hide a pickle ornament in the Christmas tree?",
+    options: ["Germany", "USA", "Poland", "Russia"],
+    answer: "USA"
+  },
+  { day: 19, type: "Tradition", text: "In Sweden, millions of people watch a 1958 Disney special called 'Donald Duck and His Friends Wish You a Merry Christmas' at 3 PM on Christmas Eve. It's a national ritual.", source: "Source: Slate" },
+  { day: 20, type: "History", text: "Mistletoe is actually a parasitic plant that grows on trees like oak and apple. The tradition of kissing under it dates back to ancient Norse mythology and Druid rites.", source: "Source: The English Garden" },
+  { day: 21, type: "Tradition", text: "In Greenland, a traditional Christmas delicacy is 'Mattak' (raw whale skin with blubber) and 'Kiviak' (auk birds fermented in a seal skin for months).", source: "Source: Greenland Travel" },
+  { day: 22, type: "History", text: "The abbreviation 'Xmas' is not irreligious. The 'X' comes from the Greek letter Chi, which is the first letter of the Greek word for Christ (Χριστός).", source: "Source: Vox" },
+  { day: 23, type: "Folklore", text: "In Greek folklore, the 'Kallikantzaroi' are malevolent goblins who live underground and come up during the 12 days of Christmas to saw down the World Tree.", source: "Source: Greek Mythology" },
+  { day: 24, type: "Mini Game", gameType: "memory", text: "Christmas Memory Match! Find all the pairs to win.", source: "Interactive Game" }
+];
