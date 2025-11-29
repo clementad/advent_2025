@@ -1,4 +1,3 @@
-import './style.css'
 import { messages } from './messages.js'
 
 const app = document.querySelector('#app')
