@@ -279,12 +279,31 @@ const createDoor = (messageData) => {
 }
 
 const init = () => {
+    let hasVisibleDoors = false
     messages.forEach(msg => {
         const door = createDoor(msg)
         if (door) {
             app.appendChild(door)
+            hasVisibleDoors = true
         }
     })
+
+    if (!hasVisibleDoors) {
+        const message = document.createElement('div')
+        message.style.textAlign = 'center'
+        message.style.color = 'var(--gold)'
+        message.style.marginTop = '2rem'
+        message.innerHTML = `
+      <h2>Coming Soon! 🎄</h2>
+      <p style="margin-top: 1rem; font-size: 1.2rem;">The Advent Calendar begins on December 1st.</p>
+      <p style="margin-top: 0.5rem; color: #94a3b8;">Come back tomorrow to open the first door!</p>
+    `
+        app.appendChild(message)
+        // Remove grid layout for this message
+        app.style.display = 'flex'
+        app.style.flexDirection = 'column'
+        app.style.alignItems = 'center'
+    }
 }
 
 init()
