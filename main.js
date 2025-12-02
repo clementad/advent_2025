@@ -263,6 +263,7 @@ const createDoor = (messageData) => {
     }
 
     const number = document.createElement('span')
+    number.className = 'door-number'
     number.textContent = day
     door.appendChild(number)
 

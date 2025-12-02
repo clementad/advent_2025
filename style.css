@@ -1,15 +1,27 @@
 :root {
-  --bg-color: #0f172a;
-  /* Dark Blue Night Sky */
-  --text-color: #f8fafc;
-  --door-bg: #dc2626;
-  /* Christmas Red */
-  --door-hover: #b91c1c;
-  --door-opened-bg: #334155;
-  /* Dimmed for opened state */
-  --accent: #15803d;
-  /* Christmas Green */
+  /* Enhanced color palette */
+  --bg-dark: #0a0e27;
+  --bg-mid: #1a1f3a;
+  --bg-light: #2a2f4a;
+
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  /* Festive colors with gradients */
+  --red-start: #dc2626;
+  --red-end: #991b1b;
+  --green-start: #15803d;
+  --green-end: #14532d;
+
   --gold: #fbbf24;
+  --gold-light: #fcd34d;
+  --copper: #d97706;
+  --rose-gold: #f43f5e;
+
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+
   --font-main: 'Inter', sans-serif;
 }
 
@@ -19,11 +31,18 @@
   padding: 0;
 }
 
+/* Festive Christmas background */
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-color);
-  background-image: linear-gradient(to bottom, #0f172a, #1e293b);
-  color: var(--text-color);
+  background: linear-gradient(135deg,
+      var(--bg-dark) 0%,
+      #1a1f3a 25%,
+      #2d1b4e 50%,
+      #1a1f3a 75%,
+      var(--bg-dark) 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: var(--text-primary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -34,83 +53,319 @@ body {
   height: auto;
 }
 
-h1 {
+/* Christmas tree decorations in background */
+body::after {
+  content: '🎄 ⛄ 🎅 🦌 🔔 ⭐ 🎁 🕯️';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   font-size: 3rem;
-  margin-bottom: 2rem;
   text-align: center;
-  color: var(--gold);
-  text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 2rem;
+  padding: 2rem;
+}
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Falling snow animation */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 60px 70px, white, transparent),
+    radial-gradient(1px 1px at 50px 50px, white, transparent),
+    radial-gradient(1px 1px at 130px 80px, white, transparent),
+    radial-gradient(2px 2px at 90px 10px, white, transparent);
+  background-size: 200px 200px;
+  animation: snowfall 20s linear infinite;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+@keyframes snowfall {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(50%);
+  }
+}
+
+/* Enhanced title with gradient and glow */
+h1 {
+  font-size: 3.5rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--copper) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 40px rgba(251, 191, 36, 0.4);
   font-weight: 800;
   z-index: 1;
+  position: relative;
+  letter-spacing: -1px;
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.3));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 30px rgba(251, 191, 36, 0.6));
+  }
 }
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1.5rem;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   z-index: 1;
   padding-bottom: 6rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .door-container {
   aspect-ratio: 1;
   cursor: pointer;
   position: relative;
+  perspective: 1000px;
+  animation: doorEntrance 0.6s ease-out backwards;
 }
 
+/* Stagger the entrance animation */
+.door-container:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.door-container:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.door-container:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.door-container:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.door-container:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.door-container:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+.door-container:nth-child(7) {
+  animation-delay: 0.35s;
+}
+
+.door-container:nth-child(8) {
+  animation-delay: 0.4s;
+}
+
+.door-container:nth-child(9) {
+  animation-delay: 0.45s;
+}
+
+.door-container:nth-child(10) {
+  animation-delay: 0.5s;
+}
+
+.door-container:nth-child(11) {
+  animation-delay: 0.55s;
+}
+
+.door-container:nth-child(12) {
+  animation-delay: 0.6s;
+}
+
+.door-container:nth-child(n+13) {
+  animation-delay: 0.65s;
+}
+
+@keyframes doorEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotateY(-15deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+/* Present-styled door design */
 .door {
   width: 100%;
   height: 100%;
-  background: var(--door-bg);
-  border: 2px solid var(--gold);
-  border-radius: 12px;
+  background: linear-gradient(135deg,
+      rgba(220, 38, 38, 0.95) 0%,
+      rgba(185, 28, 28, 0.98) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 3px solid var(--gold);
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s, background 0.2s, opacity 0.3s;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(220, 38, 38, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  transform-style: preserve-3d;
 }
 
+/* Ribbon (vertical) */
+.door::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25%;
+  height: calc(100% + 6px);
+  background: linear-gradient(to bottom,
+      rgba(251, 191, 36, 0.95) 0%,
+      rgba(245, 158, 11, 1) 50%,
+      rgba(251, 191, 36, 0.95) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    2px 0 8px rgba(0, 0, 0, 0.3),
+    -2px 0 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+/* Ribbon (horizontal) */
+.door::after {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% + 6px);
+  height: 25%;
+  background: linear-gradient(to right,
+      rgba(251, 191, 36, 0.95) 0%,
+      rgba(245, 158, 11, 1) 50%,
+      rgba(251, 191, 36, 0.95) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 -2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+/* Bow on top */
+.door .door-number {
+  position: relative;
+  z-index: 3;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced hover with 3D transform */
 .door:hover {
-  transform: scale(1.05);
-  background: var(--door-hover);
+  transform: translateY(-8px) scale(1.08) rotateX(5deg);
+  box-shadow:
+    0 16px 48px rgba(220, 38, 38, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(220, 38, 38, 0.5);
+  border-color: var(--gold);
 }
 
+/* Opened door state with glassmorphism */
 .door.opened {
-  background: var(--door-opened-bg);
-  border-color: #94a3b8;
-  color: #94a3b8;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg,
+      rgba(51, 65, 85, 0.6) 0%,
+      rgba(30, 41, 59, 0.7) 100%);
+  backdrop-filter: blur(10px);
+  border-color: rgba(148, 163, 184, 0.3);
+  color: var(--text-muted);
+  box-shadow:
+    inset 0 4px 8px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.door.opened::before {
+  display: none;
 }
 
 .door.opened:hover {
   transform: none;
-  background: var(--door-opened-bg);
+  box-shadow:
+    inset 0 4px 8px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Modal Styles */
+.door.opened:hover::after {
+  display: none;
+}
+
+/* Modal with enhanced glassmorphism */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 100;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s;
-  backdrop-filter: blur(5px);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .modal-overlay.active {
@@ -118,67 +373,277 @@ h1 {
   pointer-events: auto;
 }
 
+/* Festive modal design - mobile optimized */
 .modal-content {
-  background: #fff;
-  color: #333;
+  background: linear-gradient(135deg,
+      #fefefe 0%,
+      #fffbf5 100%);
+  color: #1e293b;
   padding: 2rem;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 400px;
+  border-radius: 24px;
+  width: 95%;
+  max-width: 520px;
   text-align: center;
-  transform: translateY(20px);
-  transition: transform 0.3s;
-  border: 4px solid var(--door-bg);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  max-height: 90vh;
-  overflow-y: auto;
+  transform: scale(0.8) translateY(40px) rotate(-2deg);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 4px solid transparent;
+  background-clip: padding-box;
   position: relative;
+  box-shadow:
+    0 30px 60px -15px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(220, 38, 38, 0.1),
+    inset 0 2px 4px rgba(255, 255, 255, 1);
+  max-height: 85vh;
+  overflow-y: auto;
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    padding: 1.5rem;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Festive gradient border - animated confetti colors */
+.modal-content::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  padding: 4px;
+  background: linear-gradient(135deg,
+      #dc2626 0%,
+      #15803d 20%,
+      #fbbf24 40%,
+      #2563eb 60%,
+      #15803d 80%,
+      #dc2626 100%);
+  background-size: 300% 300%;
+  animation: borderConfetti 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes borderConfetti {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 100% 50%;
+  }
+
+  50% {
+    background-position: 50% 100%;
+  }
+
+  75% {
+    background-position: 100% 0%;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content::before {
+    border-radius: 0;
+  }
+}
+
+/* Sparkly bow decoration on modal */
+.modal-content::after {
+  content: '🎀';
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  animation: bowBounce 2s ease-in-out infinite;
+}
+
+@keyframes bowBounce {
+
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(-5deg) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) rotate(5deg) scale(1.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content::after {
+    top: 10px;
+    font-size: 2.5rem;
+  }
 }
 
 .modal-overlay.active .modal-content {
-  transform: translateY(0);
+  transform: scale(1) translateY(0) rotate(0deg);
 }
 
+/* Festive modal typography - mobile optimized */
 .modal-type {
   text-transform: uppercase;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--door-bg);
-  margin-bottom: 0.5rem;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #dc2626 0%, #15803d 50%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+  letter-spacing: 2.5px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+@media (max-width: 480px) {
+  .modal-type {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
 }
 
 .modal-text {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #334155;
+  margin: 1.5rem 0;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .modal-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 1.25rem 0;
+  }
 }
 
 .modal-source {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #64748b;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
   font-style: italic;
+  padding-top: 1rem;
+  border-top: 2px dashed rgba(220, 38, 38, 0.2);
 }
 
+@media (max-width: 480px) {
+  .modal-source {
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Festive button design - mobile touch optimized */
 .modal-close {
-  background: var(--accent);
+  background: linear-gradient(135deg, #15803d 0%, #14532d 100%);
   color: white;
   border: none;
-  padding: 0.8rem 2rem;
+  padding: 1.15rem 2.75rem;
   border-radius: 50px;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow:
+    0 6px 16px rgba(21, 128, 61, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  min-width: 200px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 480px) {
+  .modal-close {
+    padding: 1.25rem 2.5rem;
+    font-size: 1rem;
+    min-width: 100%;
+    width: 100%;
+  }
+}
+
+.modal-close::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2));
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.modal-close:hover::before {
+  transform: translateX(100%);
 }
 
 .modal-close:hover {
-  background: #166534;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 10px 25px rgba(21, 128, 61, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* Game Styles */
+.modal-close:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow:
+    0 4px 10px rgba(21, 128, 61, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Game container - mobile optimized with hidden scrollbar */
+#game-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#game-container::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  #game-container {
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
 .game-container {
   margin-bottom: 1.5rem;
   min-height: 150px;
@@ -189,115 +654,201 @@ h1 {
   flex-direction: column;
 }
 
-/* Catch Elf */
+/* Catch Elf game */
 .elf-target {
-  font-size: 3rem;
+  font-size: 3.5rem;
   cursor: pointer;
   position: absolute;
-  transition: top 0.2s, left 0.2s;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   user-select: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
 
-/* Trivia */
+.elf-target:hover {
+  transform: scale(1.2);
+}
+
+/* Trivia game */
 .trivia-options {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
   width: 100%;
 }
 
 .trivia-btn {
-  background: #f1f5f9;
-  border: 2px solid #cbd5e1;
-  padding: 0.8rem;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 2px solid #e2e8f0;
+  padding: 1rem;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  color: #334155;
 }
 
 .trivia-btn:hover {
-  background: #e2e8f0;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  transform: translateX(4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .trivia-btn.correct {
-  background: #dcfce7;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
   border-color: #22c55e;
   color: #15803d;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
 }
 
 .trivia-btn.wrong {
-  background: #fee2e2;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
   border-color: #ef4444;
   color: #991b1b;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
-/* Decorate Tree */
+/* Decorate Tree game */
 .tree-container {
-  width: 200px;
-  height: 250px;
-  background: linear-gradient(to bottom, transparent 0%, transparent 20%, #15803d 20%, #15803d 100%);
+  width: 220px;
+  height: 270px;
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      transparent 20%,
+      var(--green-start) 20%,
+      var(--green-end) 100%);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   position: relative;
   cursor: crosshair;
   margin: 0 auto;
+  filter: drop-shadow(0 8px 16px rgba(21, 128, 61, 0.3));
 }
 
 .ornament {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   pointer-events: none;
-  /* Let clicks pass through to tree */
+  animation: ornamentDrop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Memory Game */
+@keyframes ornamentDrop {
+  from {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+/* Memory game */
 .memory-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
+  gap: 0.75rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
 }
 
 .memory-card {
   aspect-ratio: 1;
-  background: var(--door-bg);
-  border-radius: 8px;
+  background: linear-gradient(135deg,
+      rgba(220, 38, 38, 0.9) 0%,
+      rgba(153, 27, 27, 0.95) 100%);
+  border-radius: 12px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: transparent;
-  transition: transform 0.3s, background 0.3s;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   user-select: none;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+}
+
+.memory-card:hover {
+  transform: scale(1.05);
 }
 
 .memory-card.flipped,
 .memory-card.matched {
-  background: #fff;
-  border: 2px solid var(--door-bg);
-  color: #333;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid var(--red-start);
+  color: #1e293b;
   transform: rotateY(180deg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .memory-card.matched {
-  background: #dcfce7;
-  border-color: #15803d;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border-color: var(--green-start);
+  animation: matchPulse 0.6s ease-out;
+}
+
+@keyframes matchPulse {
+
+  0%,
+  100% {
+    transform: rotateY(180deg) scale(1);
+  }
+
+  50% {
+    transform: rotateY(180deg) scale(1.15);
+  }
 }
 
 /* Mobile optimizations */
 @media (max-width: 600px) {
-  .calendar-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
+  h1 {
+    font-size: 2.75rem;
   }
 
-  h1 {
-    font-size: 2.5rem;
+  .calendar-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
+
+  .door {
+    font-size: 2rem;
+  }
+
+  .modal-content {
+    padding: 2rem;
+    max-width: 95%;
+  }
+
+  .modal-text {
+    font-size: 1.1rem;
+  }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--gold), var(--copper));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
 }

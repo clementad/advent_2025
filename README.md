@@ -2,6 +2,8 @@
 
 A web-based Advent Calendar for 2025, featuring daily reveals, folklore, traditions, and mini-games.
 
+[**Live Demo**](https://clementad.github.io/advent_2025/)
+
 ## Features
 
 - **Daily Reveals**: Doors open one by one starting December 1st.
